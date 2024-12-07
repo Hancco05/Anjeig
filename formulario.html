@@ -1,0 +1,74 @@
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Contacto</title>
+    <style>
+        .mensaje {
+            display: none; /* Ocultar el mensaje por defecto */
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+        .exito {
+            color: green;
+            border: 1px solid green;
+        }
+        .error {
+            color: red;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Formulario de Contacto</h1>
+    <form id="contactForm">
+        <label for="nombre">Nombre:</label><br>
+        <input type="text" id="nombre" name="nombre" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="asunto">Asunto:</label><br>
+        <input type="text" id="asunto" name="asunto" required><br><br>
+
+        <label for="mensaje">Mensaje:</label><br>
+        <textarea id="mensaje" name="mensaje" required></textarea><br><br>
+
+        <input type="submit" value="Enviar">
+    </form>
+
+    <div class="mensaje" id="responseMessage"></div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evitar que se recargue la página
+            
+            // Crear un objeto FormData
+            const formData = new FormData(this);
+            
+            // Enviar los datos usando fetch API
+            fetch('enviar.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                const messageDiv = document.getElementById('responseMessage');
+                messageDiv.style.display = 'block';
+
+                // Mostrar el mensaje de respuesta
+                messageDiv.innerHTML = data.includes('éxito') ? 
+                    `<span class="exito">${data}</span>` : 
+                    `<span class="error">${data}</span>`;
+            })
+            .catch(error => {
+                const messageDiv = document.getElementById('responseMessage');
+                messageDiv.style.display = 'block';
+                messageDiv.innerHTML = `<span class="error">Error al enviar: ${error}</span>`;
+            });
+        });
+    </script>
+</body>
+</html>
