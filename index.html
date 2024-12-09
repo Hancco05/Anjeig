@@ -2,13 +2,162 @@
 <html lang="es">
 <head>
     <meta charset="utf-8">
-    <title>Mi Página Web</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anjeig - Inicio</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* General */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        h1, h2, h3 {
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        header img.logo {
+            width: 25%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        header nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        header nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main Content */
+        main {
+            padding: 20px 0;
+        }
+
+        .slider {
+            width: 100%;
+            height: 510px;
+            position: relative;
+        }
+
+        .slider img {
+            width: 100%;
+            height: 500px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        /* Video Section */
+        .video-section {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .video-section video {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            height: auto;
+        }
+
+        .video-section .summary {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        /* Description Block */
+        .description-block {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #4e7fe9; /* Color azul claro */
+            color: white; /* Texto blanco */
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .description-block .text {
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        .description-block .gif {
+            flex: 1;
+            text-align: center;
+        }
+
+        .description-block .gif img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            p {
+                font-size: 0.9rem;
+            }
+
+            .slider img {
+                height: 250px;
+                object-fit: cover;
+            }
+
+            .video-section video {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Bienvenido a Mi Página Web</h1>
+        <img src="img/logo.png" alt="Logo Anjeig" class="logo">
         <nav>
             <ul>
                 <li><a href="index.html">Inicio</a></li>
@@ -17,37 +166,68 @@
             </ul>
         </nav>
     </header>
-
+    <!-- Slider de imágenes -->
+    <div class="slider">
+        <img id="img-1" src="img/1.png" alt="Image 1"/>
+        <img id="img-2" src="img/2.png" alt="Image 2"/>
+        <img id="img-3" src="img/3.png" alt="Image 3"/>
+    </div>
+    <div class="navigation-button">
+        <span class="dot active" onclick="changeSlide(0)"></span>
+        <span class="dot" onclick="changeSlide(1)"></span>
+        <span class="dot" onclick="changeSlide(2)"></span>
+    </div>
     <main>
         <section id="inicio">
-            <h2>Inicio</h2>
-            <p>Esta es la sección de inicio de mi página web.</p>
-        </section>
-
-        <section id="descripcion">
-            <h2>Descripción</h2>
-            <p>Aquí puedes encontrar una descripción de los servicios que ofrezco.</p>
-        </section>
-
-        <section id="contacto">
-            <h2>Contacto</h2>
-            <form action="contact.php" method="post">
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required>
-                
-                <label for="email">Correo Electrónico:</label>
-                <input type="email" id="email" name="email" required>
-                
-                <label for="mensaje">Mensaje:</label>
-                <textarea id="mensaje" name="mensaje" required></textarea>
-                
-                <button type="submit">Enviar</button>
-            </form>
+             <!-- Video -->
+            <div class="video-section">
+                <h3>Video de Presentación</h3>
+                <video controls>
+                    <source src="img/anjeig.mp4" type="video/mp4">
+                    Tu navegador no soporta la etiqueta de video.
+                </video>
+                <p class="summary">
+                    Este video resume nuestra misión y visión, destacando nuestro compromiso con la excelencia y la responsabilidad en cada acción.
+                </p>
+            </div>
         </section>
     </main>
+
+    <div class="description-block">
+        <div class="text">
+            <h2>La importancia</h2>
+            <p>Asumimos la responsabilidad de nuestras acciones y decisiones, cumpliendo con nuestros compromisos y asumiendo la responsabilidad de los resultados de nuestro trabajo, tanto individual como colectivamente.</p>
+        </div>
+        <div class="gif">
+            <img src="img/4.gif" alt="Animación de demostración">
+        </div>
+    </div>
 
     <footer>
         <p>© 2024 Mi Página Web. Todos los derechos reservados.</p>
     </footer>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.slider img');
+        const dots = document.querySelectorAll('.dot');
+
+        function changeSlide(index) {
+            images[currentIndex].style.zIndex = 0;
+            dots[currentIndex].classList.remove('active');
+
+            currentIndex = index;
+
+            images[currentIndex].style.zIndex = 1;
+            dots[currentIndex].classList.add('active');
+        }
+
+        // Automatically change slide every 3 seconds
+        setInterval(() => {
+            let nextIndex = (currentIndex + 1) % images.length;
+            changeSlide(nextIndex);
+        }, 3000);
+    </script>
 </body>
 </html>
